@@ -4,11 +4,13 @@ Af Vibeke Nordestgaard
 ## Tirsdag
 1. EX-1
 Projektet Point i folderen 02_tirsdag på Github.
+
 Jeg fik lavet EX-1.
 
 2. EX-2
 Projektet ex2 i folderen 02_tirsdag på Github.
-* Jeg fik lavet EX-2
+
+* Jeg fik lavet EX-2.
 
 3. EX-3
 Projektet ex2 i folderen 02_tirsdag på Github.
