@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dbfacade;
 
 import Entity.Customer;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,33 +11,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author vnord
- */
 public class CustomerFacadeTest {
     
+    public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+    public static final CustomerFacade facade = CustomerFacade.getCustomerFacade(emf);
+    
     public CustomerFacadeTest() {
-    }
-
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
     }
     
     @BeforeAll
     public static void setUpClass() {
+        Customer cus = facade.addCustomer("Edith", "Theodor");
     }
     
     @AfterAll
@@ -50,6 +30,7 @@ public class CustomerFacadeTest {
     
     @BeforeEach
     public void setUp() {
+        Customer cus = facade.addCustomer("Edith", "Theodor");
     }
     
     @AfterEach
@@ -57,32 +38,14 @@ public class CustomerFacadeTest {
     }
 
     /**
-     * Test of getCustomerFacade method, of class CustomerFacade.
-     */
-    @org.junit.jupiter.api.Test
-    public void testGetCustomerFacade() {
-        System.out.println("getCustomerFacade");
-        EntityManagerFactory _emf = null;
-        CustomerFacade expResult = null;
-        CustomerFacade result = CustomerFacade.getCustomerFacade(_emf);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of findByID method, of class CustomerFacade.
      */
     @org.junit.jupiter.api.Test
     public void testFindByID() {
-        System.out.println("findByID");
         int id = 1;
-        CustomerFacade instance = null;
-        Customer expResult = null;
-        Customer result = instance.findByID(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        Long expResult = 1L;
+        Customer result = facade.findByID(1);
+        assertEquals(expResult, result.getId());
     }
 
     /**
@@ -90,14 +53,13 @@ public class CustomerFacadeTest {
      */
     @org.junit.jupiter.api.Test
     public void testFindByLastName() {
-        System.out.println("findByLastName");
-        String name = "";
-        CustomerFacade instance = null;
+        String name = "Stuart";
         List<Customer> expResult = null;
-        List<Customer> result = instance.findByLastName(name);
-        assertEquals(expResult, result);
+        String expR = "Stuart";
+        List<Customer> result = facade.findByLastName(name);
+        assertEquals(expR, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -105,13 +67,12 @@ public class CustomerFacadeTest {
      */
     @org.junit.jupiter.api.Test
     public void testGetNumberOfCustomers() {
-        System.out.println("getNumberOfCustomers");
-        CustomerFacade instance = null;
-        Long expResult = null;
-        Long result = instance.getNumberOfCustomers();
+        //CustomerFacade instance = null;
+        Long expResult = 4L;
+        Long result = facade.getNumberOfCustomers();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -119,13 +80,12 @@ public class CustomerFacadeTest {
      */
     @org.junit.jupiter.api.Test
     public void testAllCustomers() {
-        System.out.println("allCustomers");
         CustomerFacade instance = null;
-        List<Customer> expResult = null;
-        List<Customer> result = instance.allCustomers();
-        assertEquals(expResult, result);
+        int expResult = 4;
+        List<Customer> result = facade.allCustomers();
+        assertEquals(expResult, result.size());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -133,27 +93,8 @@ public class CustomerFacadeTest {
      */
     @org.junit.jupiter.api.Test
     public void testAddCustomer() {
-        System.out.println("addCustomer");
-        String fName = "";
-        String lName = "";
-        CustomerFacade instance = null;
-        Customer expResult = null;
-        Customer result = instance.addCustomer(fName, lName);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class CustomerFacade.
-     */
-    @org.junit.jupiter.api.Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        CustomerFacade.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Customer result = facade.addCustomer("Freya", "North");
+        assertTrue(result!=null);
     }
     
 }
