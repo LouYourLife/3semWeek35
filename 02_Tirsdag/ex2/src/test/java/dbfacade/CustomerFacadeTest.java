@@ -81,7 +81,7 @@ public class CustomerFacadeTest {
     @org.junit.jupiter.api.Test
     public void testAllCustomers() {
         CustomerFacade instance = null;
-        int expResult = 4;
+        int expResult = 5;
         List<Customer> result = facade.allCustomers();
         assertEquals(expResult, result.size());
         // TODO review the generated test code and remove the default call to fail.
